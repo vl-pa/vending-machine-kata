@@ -1,0 +1,21 @@
+{
+  "name": "vending-machine-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/typescript/bin/tsc",
+    "test": "npm run build && jest --verbose ./out",
+    "clean": "rm -rf out/",
+    "clean-node": "rm -rf node_modules",
+    "clean-all": "npm run clean && npm run clean-node",
+    "watch": "node_modules/typescript/bin/tsc --watch"
+  },
+  "author": "Vladimir Pavlicenko",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.4",
+    "jest": "^26.1.0",
+    "typescript": "^3.9.7"
+  }
+}
