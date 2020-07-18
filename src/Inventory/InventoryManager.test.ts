@@ -1,5 +1,4 @@
 import { InventoryManager } from "./InventoryManager";
-import { availableProducts } from "../constants/availableProduct";
 import { Inventory } from "./Inventory";
 import { ProductName } from './Product';
 
@@ -16,18 +15,18 @@ describe("InventoryManager", () => {
     {
       product: {
         name: ProductName.chips,
-        price: 2
+        price: 0.5
       },
       quantity: 2
     }
   ]
   const inventoryManager = new InventoryManager(testInventory);
 
-  it("should return true if product is in stock", () => {
+  it("should return the correct number of cola", () => {
     expect(inventoryManager.getProductStock(ProductName.cola)).toEqual(10);
   });
 
-  it("should return false if product is out of stock", () => {
+  it("should return the correct number of chips", () => {
     expect(inventoryManager.getProductStock(ProductName.chips)).toEqual(2);
   });
 
@@ -37,9 +36,13 @@ describe("InventoryManager", () => {
     expect(inventoryManager.getProductStock(ProductName.cola)).toEqual(9);
   });
 
-  it("should not subtract item from inventory that hs not been selected", () => {
+  it("should not subtract item from inventory that has not been selected", () => {
     expect(inventoryManager.getProductStock(ProductName.chips)).toEqual(2);
     inventoryManager.subtractFromInventory(ProductName.cola);
     expect(inventoryManager.getProductStock(ProductName.chips)).toEqual(2);
+  });
+
+  it("should not subtract item from inventory that has not been selected", () => {
+    expect(inventoryManager.getProductPrice(ProductName.chips)).toEqual(0.5);
   });
 });

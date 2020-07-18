@@ -3,7 +3,8 @@ import { Inventory } from "./Inventory";
 
 interface IInventoryManager {
   getProductStock: (product: ProductName) => number;
-  subtractFromInventory: (Product: ProductName) => void;
+  subtractFromInventory: (product: ProductName) => void;
+  getProductPrice: (product: ProductName) => number;
 }
 
 export class InventoryManager implements IInventoryManager {
@@ -17,12 +18,20 @@ export class InventoryManager implements IInventoryManager {
     return this.inventory.find(product => productName === product.product.name);
   }
 
+  public getProductPrice(productName: ProductName) {
+    const inventoryItem = this.getInventoryItem(productName);
+    if (inventoryItem === undefined) {
+      throw new Error('Cannot find product');
+    }
+    return inventoryItem.product.price;
+  }
+
   public getProductStock(productName: ProductName) {
-    const product = this.getInventoryItem(productName);
-    if (product === undefined) {
+    const inventoryItem = this.getInventoryItem(productName);
+    if (inventoryItem === undefined) {
       return 0;
     }
-    return product.quantity;
+    return inventoryItem.quantity;
   }
 
   public subtractFromInventory(productName: ProductName) {

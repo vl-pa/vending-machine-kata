@@ -77,4 +77,33 @@ describe("VendingMachine", () => {
     vendingMachine.acceptCoin(quarterSpec);
     expect(vendingMachine.displayMessage).toEqual('0.3');
   });
+
+  it("should display INSERT COIN when coins are returned", () => {
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.returnCoins();
+    expect(vendingMachine.displayMessage).toEqual(DisplayMessage.insertCoin);
+  });
+
+  it("should display SOLD OUT when selected product is out of stock", () => {
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.selectProduct(ProductName.chips);
+    expect(vendingMachine.displayMessage).toEqual(`${DisplayMessage.soldOut} 0.5`);
+  });
+
+  it("should display PRICE and INSERT COIN when selected product costs more than been inserted", () => {
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.selectProduct(ProductName.cola);
+    expect(vendingMachine.displayMessage).toEqual(`${DisplayMessage.price} 1 ${DisplayMessage.insertCoin}`);
+  });
+
+  it("should display THANK you when selected product is available and enough money was inserted", () => {
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.acceptCoin(quarterSpec);
+    vendingMachine.selectProduct(ProductName.cola);
+    expect(vendingMachine.displayMessage).toEqual(DisplayMessage.thankYou);
+  });
 });
