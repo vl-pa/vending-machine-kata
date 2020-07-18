@@ -1,5 +1,5 @@
 import { CoinAcceptor } from "./CoinAcceptor";
-import { acceptedCoins } from "./knownCoins";
+import { acceptedCoins } from "../constants/knownCoins";
 import { CoinSpecification } from "./CoinSpecification";
 
 describe("CoinAcceptor", () => {
