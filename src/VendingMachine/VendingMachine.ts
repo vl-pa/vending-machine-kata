@@ -7,6 +7,7 @@ interface IVendingMachine {
   selectProduct: (product: ProductName) => void;
   acceptCoin: (coinSpec: CoinSpecification) => void;
   returnCoins: () => void;
+  setNoChange: () => void;
   displayMessage: string;
 }
 
@@ -14,7 +15,8 @@ export enum DisplayMessage {
   insertCoin = 'INSERT COIN',
   soldOut = 'SOLD OUT',
   thankYou = 'THANK YOU',
-  price = 'PRICE '
+  price = 'PRICE ',
+  exactChangeOnly = 'EXACT CHANGE ONLY'
 }
 
 export class VendingMachine implements IVendingMachine {
@@ -61,5 +63,9 @@ export class VendingMachine implements IVendingMachine {
     this.balance-=selectedProductPrice;
     this.inventoryManager.subtractFromInventory(product);
     this.setDisplayMessage(DisplayMessage.thankYou);
+  }
+
+  public setNoChange (){
+
   }
 }

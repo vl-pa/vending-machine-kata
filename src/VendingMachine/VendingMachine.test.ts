@@ -106,4 +106,10 @@ describe("VendingMachine", () => {
     vendingMachine.selectProduct(ProductName.cola);
     expect(vendingMachine.displayMessage).toEqual(DisplayMessage.thankYou);
   });
+
+  it("should display EXACT CHANGE ONLY when no change available", () => {
+    vendingMachine.setNoChange();
+    expect(vendingMachine.displayMessage).toEqual(DisplayMessage.exactChangeOnly);
+  });
+
 });
