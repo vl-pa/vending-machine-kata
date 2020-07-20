@@ -17,7 +17,7 @@ export class CoinAcceptor implements ICoinAcceptor {
       return coin.specification.diameter === coinSpec.diameter
         && coin.specification.thickness === coinSpec.thickness
         && coin.specification.weight === coinSpec.weight;
-    })
+    });
   }
 
   public getCoinValue(coinSpec: CoinSpecification): number {

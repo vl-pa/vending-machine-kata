@@ -111,5 +111,4 @@ describe("VendingMachine", () => {
     vendingMachine.setNoChange();
     expect(vendingMachine.displayMessage).toEqual(DisplayMessage.exactChangeOnly);
   });
-
 });
