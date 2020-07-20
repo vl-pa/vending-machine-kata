@@ -66,6 +66,6 @@ export class VendingMachine implements IVendingMachine {
   }
 
   public setNoChange (){
-
+    this.setDisplayMessage(DisplayMessage.exactChangeOnly);
   }
 }
